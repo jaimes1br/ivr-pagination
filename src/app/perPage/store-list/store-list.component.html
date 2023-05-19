@@ -1,6 +1,6 @@
-<div class="container mt-4" *ngIf="isLoading">Loading...</div>
-<div *ngIf="!isLoading">  
-  <div class="container mt-4" style="border: 1px solid #000;">
+<ivr-loader *ngIf="isLoading"/>
+<div *ngIf="!isLoading" class="container mt-2">  
+  <div class="container mt-4" >
       <mat-form-field class="example-full-width pt-2">
           <mat-label>Search</mat-label>
           <input matInput #searchTerm>

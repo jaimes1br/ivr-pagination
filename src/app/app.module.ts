@@ -10,11 +10,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { HttpClientModule } from '@angular/common/http';
-import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { HeaderComponent } from './header/header.component';
+import { LoaderComponent } from './loader/loader.component'; 
 @NgModule({
   declarations: [
     AppComponent,
-    StoreListComponent
+    StoreListComponent,
+    HeaderComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

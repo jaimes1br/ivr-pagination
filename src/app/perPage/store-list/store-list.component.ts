@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StoresService } from '../services/stores.service';
-import { Subscription, concatMap, delay, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 export interface PeriodicElement {
   store: string;
@@ -72,7 +72,7 @@ export class StoreListComponent implements OnInit {
       this.maxPages = configData.maxPage;
       this.pageIndex = this.currentPage - 1;
       this.dataSource= storeList;
-      this.isLoading = false
+      // this.isLoading = false
     });
 
   }
@@ -88,6 +88,7 @@ export class StoreListComponent implements OnInit {
       this.router.navigate(['/home'],{queryParams: { page }}); 
       this.storesService.setAllStores();              
     }else{
+      // this.isLoading = true;
       this.router.navigate(['/home'],{queryParams: { search: termToSearch}});                    
     }    
   }

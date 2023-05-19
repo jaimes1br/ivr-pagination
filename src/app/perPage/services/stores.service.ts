@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, concat, concatMap, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, concat, concatMap, map, of, tap, delay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,7 @@ export class StoresService {
       concatMap(( configData:any ) =>{
         const newParams = new HttpParams().set('limit', configData.totalItems); //we use size
         return this.http.get(`https://pokeapi.co/api/v2/pokemon`,{params: newParams}).pipe(
+          delay(2000),
           tap((storesData:any) =>{
             const { results } = storesData //just take 'content'; result is like all the stores 
             this.storesDataSubject.next({ configData, storesData: results})
@@ -97,6 +98,7 @@ export class StoresService {
   getStoreSearch(toSearch: string){
     //this request returns infoconfig and result(stores) just need to set that values
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${toSearch}`).pipe(
+      delay(2000),
       tap((pkm:any) =>{
         const elemnt = {
           id: pkm.id,
@@ -111,12 +113,11 @@ export class StoresService {
         
         this.storesDataTempSubject.next({ configData, storesData });
         this.setCurrentPage(1);   
-      })
+      }),
     )
   }
 
   setAllStores(){
     this.storesDataTempSubject.next(this.storesDataSubject.getValue());
-  
   }
 }
